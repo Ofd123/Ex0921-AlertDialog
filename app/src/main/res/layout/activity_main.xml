@@ -5,8 +5,9 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FAFAFA"
     android:orientation="vertical"
-    tools:context=".MainActivity" >
+    tools:context=".MainActivity">
 
     <Space
         android:layout_width="match_parent"
@@ -28,9 +29,9 @@
             android:id="@+id/firstButton"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="Button"
-            android:onClick="onlyTextDialog"/>
+            android:layout_weight="2"
+            android:onClick="onlyTextDialog"
+            android:text="firstButton" />
 
         <Space
             android:layout_width="wrap_content"
@@ -43,7 +44,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:onClick="textAndPicDialog"
-            android:text="Button" />
+            android:text="secondButton" />
 
         <Space
             android:layout_width="wrap_content"
@@ -72,8 +73,8 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:onClick="alertDialogWithOnlyOneButton"
-            android:text="Button" />
+            android:onClick="switchBackground"
+            android:text="thirdButton" />
 
         <Space
             android:layout_width="wrap_content"
@@ -85,8 +86,8 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:onCLick="alertDialogWith"
-            android:text="Button" />
+            android:onClick="changeBackground"
+            android:text="fourthButton" />
 
         <Space
             android:layout_width="wrap_content"
@@ -115,7 +116,8 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Button" />
+            android:onClick="theLastButton"
+            android:text="fithButton" />
 
         <Space
             android:layout_width="wrap_content"
@@ -126,7 +128,7 @@
             android:id="@+id/credits"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:text="credits" />
 
         <Space

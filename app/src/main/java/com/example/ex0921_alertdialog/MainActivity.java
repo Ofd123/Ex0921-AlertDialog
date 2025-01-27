@@ -1,9 +1,13 @@
 
 package com.example.ex0921_alertdialog;
 
+import static android.graphics.Color.rgb;
+
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AlertDialog;
@@ -11,6 +15,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import java.util.Random;
 
 /**
  * this is the main activity it will show 5 buttons and each button opens a different alert dialog
@@ -20,8 +26,10 @@ import androidx.core.view.WindowInsetsCompat;
  */
 public class MainActivity extends AppCompatActivity
 {
-    AlertDialog.Builder text,textAndPic,singleButton;
-
+    AlertDialog.Builder text,textAndPic,singleButton,switchBg,operations,everyColor;
+    LinearLayout main;
+    Random rnd;
+    int[] colors; //= ;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -35,9 +43,15 @@ public class MainActivity extends AppCompatActivity
             return insets;
         });
 
-        text = new AlertDialog.Builder(this);           //first button
-        textAndPic = new AlertDialog.Builder(this);     // second button
-        singleButton = new AlertDialog.Builder(this);   // third button
+        main = findViewById(R.id.main);
+        rnd = new Random();
+
+        text = new AlertDialog.Builder(this);            //first button
+        textAndPic = new AlertDialog.Builder(this);      // second button
+        switchBg = new AlertDialog.Builder(this);        // third button
+        operations = new AlertDialog.Builder(this);      // fourth button
+        everyColor = new AlertDialog.Builder(this);      // fifth button
+
 
 
     }
@@ -92,4 +106,84 @@ public class MainActivity extends AppCompatActivity
     }
     //------------------------------------------------------------------------------------------------------------------------
 
+    /**
+     * this method will be called when the user clicks on the button
+     * it allows the user to change the background color to green or to blue
+     * @param view
+     */
+    public void switchBackground(View view)
+    {
+        switchBg.setTitle("switch background");
+        switchBg.setMessage("choose your background color:");
+        switchBg.setNegativeButton("blue", new DialogInterface.OnClickListener()
+        {
+            @Override
+            public void onClick(DialogInterface dialog, int which)
+            {
+                main.setBackgroundColor(Color.BLUE);
+                dialog.cancel();
+            }
+        });
+        //------------------------------------------------------------------------------------------
+        switchBg.setPositiveButton("green", new DialogInterface.OnClickListener()
+        {
+            @Override
+            public void onClick(DialogInterface dialog, int which)
+            {
+                main.setBackgroundColor(Color.GREEN);
+                dialog.cancel();
+            }
+        });
+        AlertDialog showText = switchBg.create();
+        showText.show();
+    }
+
+    /**
+     * the func will be called when the user clicks on the fourth button
+     * it allows the user to to change the background color to a random color or leave
+     * @param view 
+     */
+    public void changeBackground(View view)
+    {
+        operations.setTitle("Operations");
+        operations.setMessage("Choose an operation:");
+        operations.setNegativeButton("resetBackGround", new DialogInterface.OnClickListener()
+        {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which)
+            {
+                main.setBackgroundColor(Color.WHITE);
+                dialog.cancel();
+            }
+        });
+        operations.setPositiveButton("changeBackGround", new DialogInterface.OnClickListener()
+        {
+            public void onClick(DialogInterface dialog, int which)
+            {
+                int red = rnd.nextInt(255);
+                int green = rnd.nextInt(255);
+                int blue = rnd.nextInt(255);
+                main.setBackgroundColor(rgb(red, green, blue));
+                dialog.cancel();
+            }
+        });
+        operations.setNegativeButton("leave", new DialogInterface.OnClickListener()
+        {
+            @Override
+            public void onClick(DialogInterface dialog, int which)
+            {
+                dialog.cancel();
+            }
+
+        });
+        AlertDialog showText = operations.create();
+        showText.show();
+    }
+
+
+    public void theLastButton(View view)
+    {
+
+    }
 }
