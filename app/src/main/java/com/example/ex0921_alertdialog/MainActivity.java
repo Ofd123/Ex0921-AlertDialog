@@ -4,6 +4,7 @@ package com.example.ex0921_alertdialog;
 import static android.graphics.Color.rgb;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -68,7 +69,7 @@ public class MainActivity extends AppCompatActivity
         AlertDialog showText = text.create();
         showText.show();
     }
-    //------------------------------------------------------------------------------------------------------------------------
+    //----------------------------------------------------------------------------------------------
     /**
      * this method will be called when the user clicks on the button
      * it will show an alert dialog with text and a picture
@@ -82,7 +83,7 @@ public class MainActivity extends AppCompatActivity
         AlertDialog showText = textAndPic.create();
         showText.show();
     }
-    //------------------------------------------------------------------------------------------------------------------------
+    //----------------------------------------------------------------------------------------------
     /**
      * this method will be called when the user clicks on the button
      * it will show an alert dialog with text, an image and a button
@@ -104,7 +105,7 @@ public class MainActivity extends AppCompatActivity
         AlertDialog showText = singleButton.create();
         showText.show();
     }
-    //------------------------------------------------------------------------------------------------------------------------
+    //----------------------------------------------------------------------------------------------
 
     /**
      * this method will be called when the user clicks on the button
@@ -137,7 +138,7 @@ public class MainActivity extends AppCompatActivity
         AlertDialog showText = switchBg.create();
         showText.show();
     }
-
+    //----------------------------------------------------------------------------------------------
     /**
      * the func will be called when the user clicks on the fourth button
      * it allows the user to to change the background color to a random color or leave
@@ -147,6 +148,7 @@ public class MainActivity extends AppCompatActivity
     {
         operations.setTitle("Operations");
         operations.setMessage("Choose an operation:");
+        //------------------------------------------------------------------------------------------
         operations.setNegativeButton("resetBackGround", new DialogInterface.OnClickListener()
         {
 
@@ -157,6 +159,7 @@ public class MainActivity extends AppCompatActivity
                 dialog.cancel();
             }
         });
+        //------------------------------------------------------------------------------------------
         operations.setPositiveButton("changeBackGround", new DialogInterface.OnClickListener()
         {
             public void onClick(DialogInterface dialog, int which)
@@ -168,6 +171,7 @@ public class MainActivity extends AppCompatActivity
                 dialog.cancel();
             }
         });
+        //------------------------------------------------------------------------------------------
         operations.setNegativeButton("leave", new DialogInterface.OnClickListener()
         {
             @Override
@@ -177,13 +181,59 @@ public class MainActivity extends AppCompatActivity
             }
 
         });
+        //------------------------------------------------------------------------------------------
         AlertDialog showText = operations.create();
         showText.show();
     }
+    //----------------------------------------------------------------------------------------------
 
-
+    /**
+     * the func will be called when the user clicks on the fourth button
+     * it allows the user to change the background color to a random color or reset it back to white or leave
+     * @param view
+     */
     public void theLastButton(View view)
     {
+        everyColor.setTitle("this is the last alert dialog");
+        everyColor.setMessage("Choose an operation:");
+        //------------------------------------------------------------------------------------------
+        everyColor.setNegativeButton("cancel", new DialogInterface.OnClickListener()
+        {
+            @Override
+            public void onClick(DialogInterface dialog, int which)
+            {
+                dialog.cancel();
+            }
+        });
+        //------------------------------------------------------------------------------------------
+        everyColor.setNeutralButton("resetBackground", new DialogInterface.OnClickListener()
+        {
 
+            @Override
+            public void onClick(DialogInterface dialog, int which)
+            {
+                main.setBackgroundColor(Color.WHITE);
+            }
+        });
+        //------------------------------------------------------------------------------------------
+        everyColor.setPositiveButton("changeBackGround", new DialogInterface.OnClickListener()
+        {
+            @Override
+            public void onClick(DialogInterface dialog, int which)
+            {
+                int red = rnd.nextInt(255);
+                int green = rnd.nextInt(255);
+                int blue = rnd.nextInt(255);
+                main.setBackgroundColor(rgb(red, green, blue));
+                dialog.cancel();
+            }
+        });
+
+    }
+
+    public void credits(View view)
+    {
+        Intent intent = new Intent(this, credits.class);
+        startActivity(intent);
     }
 }
